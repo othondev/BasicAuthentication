@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "prepush": "npm test && npm version patch",
     "test": "nyc mocha $(find . -name '*.test.js') --timeout=3000",
-    "postversion": "npm --no-git-tag-version version patch"
+    "postversion": "npm --no-git-tag-version version patch",
+    "precommit": "npm test"
   },
-  "pre-commit": [
-    "test"
-  ],
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
@@ -22,7 +21,6 @@
   },
   "devDependencies": {
     "nyc": "^11.0.3",
-    "pre-commit": "^1.2.2",
     "chai": "^4.0.2",
     "mocha": "^3.4.2",
     "istanbul": "^0.4.5"
